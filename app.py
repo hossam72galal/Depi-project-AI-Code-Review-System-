@@ -25,7 +25,7 @@ if "api_key" not in st.session_state:
 # --- ميزة الباسوورد السريع للتيم واللجنة ---
 with st.sidebar.expander("⚡ Show the API key"):
     st.write("Enter the password to automatically populate and activate the key.:")
-    quick_pass = st.text_input("كلمة السر:", type="password", placeholder="Enter Password here...")
+    quick_pass = st.text_input("Password:", type="password", placeholder="Enter Password here...")
     if st.button("Automatically fill in the key🚀", use_container_width=True):
         if quick_pass == "2006":  # تقدر تغير رقم 1234 لأي باسوورد يعجبك
             st.session_state.api_key = HIDDEN_REAL_KEY
