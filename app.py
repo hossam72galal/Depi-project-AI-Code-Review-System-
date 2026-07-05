@@ -38,7 +38,7 @@ with st.sidebar.expander("⚡ Show the API key"):
 raw_key = st.sidebar.text_input("Groq API Key:", type="password", placeholder="gsk_...", value=st.session_state.api_key)
 
 # زرار التفعيل اليدوي (لو حد حابب يحط مفتاح بتاعه هو)
-if st.sidebar.button("تفعيل واعتماد المفتاح 🔑", use_container_width=True):
+if st.sidebar.button("Activating and approving the key 🔑", use_container_width=True):
     st.session_state.api_key = raw_key
     if raw_key.strip():
         st.sidebar.success("The key has been successfully activated! 🎉")
@@ -80,13 +80,13 @@ STRICT INSTRUCTIONS:
 2. Keep your explanation simple, direct, and easy to read. Avoid long essays or generic clichés.
 3. Use the following exact markdown format:
 
-### 🐞 المشاكل المكتشفة (Key Issues Identified):
+### 🐞 (Key Issues Identified):
 * Mention only the actual errors or bottlenecks concisely in 2-4 brief bullet points.
 
-### 💡 نصيحة للتحسين (Quick Tip):
+### 💡 (Quick Tip):
 * One concise sentence on how to write this better.
 
-### ✅ الكود المصحح (Corrected Code):
+### ✅ (Corrected Code):
 Provide the exact, clean, fixed code directly inside a code block without over-complicating it.
 
 Code to review:
@@ -116,7 +116,7 @@ tab1, tab2 = st.tabs(["⚡(Live Review)", "📊 (Dashboard)"])
 
 # --- التبويبة الأولى: التجربة الحية ---
 with tab1:
-    input_method = st.radio("اختر طريقة إدخال الكود:", ("رفع ملف (File Upload)", "كتابة/لصق مباشر (Paste Code)"), horizontal=True)
+    input_method = st.radio("Choose the method of entering the code:", ("(File Upload)", "(Paste Code)"), horizontal=True)
     
     code_to_review = ""
     file_name = "Direct_Paste.py"
@@ -142,7 +142,7 @@ with tab1:
                 prompt = build_prompt(code_to_review, file_type)
                 ai_response = call_groq_api(prompt, user_api_key)
                 
-                if "❌ خطأ" in ai_response or "Error:" in ai_response:
+                if "❌ Error" in ai_response or "Error:" in ai_response:
                     st.error(ai_response)
                 else:
                     log_to_db(file_name, "SUCCESS", ai_response)
