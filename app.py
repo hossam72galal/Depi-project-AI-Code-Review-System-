@@ -125,21 +125,19 @@ with tab1:
     file_name = "Direct_Paste.py"
     file_type = "python"
 
-    if input_method == "(File Upload)":
-        uploaded_file = st.file_uploader("Upload the code file (.py, .sql)", type=["py", "sql"])
-       uploaded_file = st.file_uploader("Upload the code file (.py, .sql, .ipynb)", type=["py", "sql", "ipynb"])
-if uploaded_file is not None:
-    code_to_review = uploaded_file.read().decode("utf-8")
-    file_name = uploaded_file.name
-    if file_name.endswith(".py"):
-        file_type = "python"
-    elif file_name.endswith(".sql"):
-        file_type = "sql"
+if input_method == "(File Upload)":
+        uploaded_file = st.file_uploader("Upload the code file (.py, .sql, .ipynb)", type=["py", "sql", "ipynb"])
+        if uploaded_file is not None:
+            code_to_review = uploaded_file.read().decode("utf-8")
+            file_name = uploaded_file.name
+            if file_name.endswith(".py"):
+                file_type = "python"
+            elif file_name.endswith(".sql"):
+                file_type = "sql"
+            else:
+                file_type = "jupyter"
     else:
-        file_type = "jupyter"
-        
-    else:
-        file_type = st.selectbox("Select the programming language:", ["python", "sql"])
+        file_type = st.selectbox("Select the programming language:", ["python", "sql", "jupyter"])
         code_to_review = st.text_area("Paste the broken code here:", height=200)
 
     if st.button("🔍 Code Review and Optimization", type="primary"):
