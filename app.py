@@ -125,13 +125,19 @@ with tab1:
     file_name = "Direct_Paste.py"
     file_type = "python"
 
-    # تم تصليح الشرط هنا ليتطابق مع الـ Radio Button
     if input_method == "(File Upload)":
         uploaded_file = st.file_uploader("Upload the code file (.py, .sql)", type=["py", "sql"])
-        if uploaded_file is not None:
-            code_to_review = uploaded_file.read().decode("utf-8")
-            file_name = uploaded_file.name
-            file_type = "python" if file_name.endswith(".py") else "sql"
+       uploaded_file = st.file_uploader("Upload the code file (.py, .sql, .ipynb)", type=["py", "sql", "ipynb"])
+if uploaded_file is not None:
+    code_to_review = uploaded_file.read().decode("utf-8")
+    file_name = uploaded_file.name
+    if file_name.endswith(".py"):
+        file_type = "python"
+    elif file_name.endswith(".sql"):
+        file_type = "sql"
+    else:
+        file_type = "jupyter"
+        
     else:
         file_type = st.selectbox("Select the programming language:", ["python", "sql"])
         code_to_review = st.text_area("Paste the broken code here:", height=200)
