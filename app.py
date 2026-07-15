@@ -125,7 +125,7 @@ with tab1:
     file_name = "Direct_Paste.py"
     file_type = "python"
 
-if input_method == "(File Upload)":
+    if input_method == "(File Upload)":
         uploaded_file = st.file_uploader("Upload the code file (.py, .sql, .ipynb)", type=["py", "sql", "ipynb"])
         if uploaded_file is not None:
             code_to_review = uploaded_file.read().decode("utf-8")
@@ -139,6 +139,7 @@ if input_method == "(File Upload)":
     else:
         file_type = st.selectbox("Select the programming language:", ["python", "sql", "jupyter"])
         code_to_review = st.text_area("Paste the broken code here:", height=200)
+
     if st.button("🔍 Code Review and Optimization", type="primary"):
         if code_to_review.strip() == "":
             st.warning("Please enter the code first!")
