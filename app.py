@@ -139,7 +139,6 @@ if input_method == "(File Upload)":
     else:
         file_type = st.selectbox("Select the programming language:", ["python", "sql", "jupyter"])
         code_to_review = st.text_area("Paste the broken code here:", height=200)
-
     if st.button("🔍 Code Review and Optimization", type="primary"):
         if code_to_review.strip() == "":
             st.warning("Please enter the code first!")
